@@ -18,7 +18,7 @@ void createAccount(){
 
     cout<<"\nInsert your name: ";
     cin>>name;
-    cout<<"\nInsert your PIN number : ";
+    cout<<"\nInsert your PIN : ";
     cin>>pin;
 }
 

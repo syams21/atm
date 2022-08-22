@@ -4,37 +4,75 @@
 
 using namespace std;
 
-void displayMenu(){
+void login();
+void registr();
+
+main(){
+    int choice;
+
     cout<<"\n\n\tWELCOME TO SYAMS BANK\n";
     cout<<"=====================================\n";
-    cout<<"1. Create New Account\n";
-    cout<<"2. Login\n";
+    cout<<"1. Login\n";
+    cout<<"2. Register\n";
     cout<<"3. Exit\n";
-}
 
-void createAccount(){
-    string name;
-    int pin;
-
-    cout<<"\nInsert your name: ";
-    cin>>name;
-    cout<<"\nInsert your PIN : ";
-    cin>>pin;
-}
-
-void login(){
-
-}
-
-int main(){
-    int choice;
-    displayMenu();
-    cout<<"Insert your choice(1-2): ";
+    cout<<"Insert your choice(1-3): ";
     cin>>choice;
 
     switch (choice){
-        case 1: createAccount(); break;
-        case 2: login(); break;
-        default: cout<<"\ninvalid"; break;
+        case 1:
+            login(); break;
+        case 2:
+            registr(); break;
+        case 3:
+            system("cls");
+            cout<<"Thanks for using this program"; break;
+    break;
+        default: cout<<"\nYour input is invalid"; break;
     }
+}
+
+void login(){
+    int count;
+    string user, pin, u, p;
+    system("cls");
+    cout<<"Please enter your username and pin\n";
+    cout<<"Username : ";
+    cin>>user;
+    cout<<"PIN      : ";
+    cin>>pin;
+
+    ifstream input("userdata.txt");
+    while(input>>u>>p){
+        if(u==user && p==pin){
+            count=1;
+            system("cls");
+        }
+    }
+    input.close();
+    if(count==1){
+        cout<<"\nHello "<<user;
+        cin.get();
+        main();
+    }
+    else{
+        cout<<"\nLogin error, please check your username and password\n";
+        main();
+    }
+}
+
+void registr(){
+    string reguser, regpin, ru, rp;
+    system("cls");
+    
+    cout<<"\nInsert your username: ";
+    cin>>reguser;
+    cout<<"\nInsert your PIN : ";
+    cin>>regpin;
+
+    ofstream reg("userdata.txt", ios::app);
+    reg<<reguser<<' '<<regpin<<endl;
+    system("cls");
+    cout<<"\n Registration Succesfull\n";
+    main();
 }

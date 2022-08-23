@@ -62,17 +62,50 @@ void login(){
 }
 
 void registr(){
-    string reguser, regpin, ru, rp;
+    string reguser, regpin, regbalance, ru, rp, rb;
     system("cls");
     
     cout<<"\nInsert your username: ";
     cin>>reguser;
     cout<<"\nInsert your PIN : ";
     cin>>regpin;
+    cout<<"\nInsert your balance: ";
+    cin>>regbalance;
 
     ofstream reg("userdata.txt", ios::app);
-    reg<<reguser<<' '<<regpin<<endl;
+    reg<<reguser<<' '<<regpin<<' '<<regbalance<<endl;
     system("cls");
     cout<<"\n Registration Succesfull\n";
     main();
 }
+    // if(regbalance%50000==0){
+        
+    // }
+    // else{
+    //     registr();
+    // }
+
+// void usermenu(){
+//     int choice;
+
+//     cout<<"\n\n\tSelect One\n";
+//     cout<<"=====================================\n";
+//     cout<<"1. Balance Information\n";
+//     cout<<"2. Transfer\n";
+//     cout<<"3. Change PIN (soon)\n";
+
+//     cout<<"Insert your choice(1-3): ";
+//     cin>>choice;
+
+//     switch (choice){
+//         case 1:
+//             login(); break;
+//         case 2:
+//             registr(); break;
+//         case 3:
+//             system("cls");
+//             cout<<"Thanks for using this program"; break;
+//     break;
+//         default: cout<<"\nYour input is invalid"; break;
+//     }
+// }

@@ -11,7 +11,8 @@ void usermenu();
 main(){
     int choice;
 
-    cout<<"\n\n\tWELCOME TO SYAMS BANK\n";
+    system("cls");
+    cout<<"\tWELCOME TO SYAMS BANK\n";
     cout<<"=====================================\n";
     cout<<"1. Login\n";
     cout<<"2. Register\n";
@@ -34,9 +35,8 @@ main(){
 }
 
 void login(){
-    int count;
+    int count, pin, balance, p, b;
     string user, u;
-    int pin, balance, p, b;
     system("cls");
     cout<<"Please enter your username and pin\n";
     cout<<"Username : ";
@@ -53,9 +53,7 @@ void login(){
     }
     input.close();
     if(count==1){
-        cout<<"\nHello "<<user;
-        cin.get();
-        main();
+        usermenu();
     }
     else{
         cout<<"\nLogin error, please check your username and password\n";
@@ -86,10 +84,48 @@ void registr(){
     }
 }
 
+void balanceinform(){
+    int count, balance, pin, b, p;
+    string u;
+
+    system("cls");
+
+    cout<<"\nInsert your PIN : ";
+    cin>>pin;
+
+    ifstream input("userdata.txt");
+    while(input>>u>>p>>b){
+        if(p==pin){
+            string next;
+
+            system("cls");
+            cout<<"Your balance is : Rp. "<<b;
+
+            cout<<"\n\nNext(press y)? : ";
+            cin>>next;
+
+            if(next=="y" || next=="Y"){
+                usermenu();
+            }
+            else{
+                balanceinform();
+            }
+        }
+        else{
+            balanceinform();
+        }
+    }
+    input.close();
+}
+
+void transfer(){
+
+}
+
 void usermenu(){
     int choice;
-
-    cout<<"\n\n\tSelect One\n";
+    system("cls");
+    cout<<"\t   Select One\n";
     cout<<"=====================================\n";
     cout<<"1. Balance Information\n";
     cout<<"2. Transfer\n";
@@ -100,13 +136,15 @@ void usermenu(){
 
     switch (choice){
         case 1:
-            login(); break;
+            balanceinform(); break;
         case 2:
             registr(); break;
         case 3:
             system("cls");
             cout<<"Thanks for using this program"; break;
-    break;
-        default: cout<<"\nYour input is invalid"; break;
+        break;
+        default:
+            cout<<"\nYour input is invalid"; 
+            usermenu(); break;
     }
 }

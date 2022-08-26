@@ -119,7 +119,11 @@ void balanceinform(){
 }
 
 void transfer(){
+    int tf;
 
+    cout<<"masukkan nilai transfer: ";
+    cin<<tf;
+    usermenu();
 }
 
 void usermenu(){

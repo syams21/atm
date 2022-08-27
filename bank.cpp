@@ -121,7 +121,9 @@ void balanceinform(){
 void transfer(){
     int tf;
 
-    cout<<"masukkan nilai transfer: ";
+    cout<<"\t   Transger\n";
+    cout<<"=====================================\n";
+    cout<<"Masukkan nominal transfer: ";
     cin<<tf;
     usermenu();
 }

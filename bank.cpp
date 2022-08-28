@@ -8,8 +8,9 @@ void login();
 void registr();
 void usermenu();
 
-main(){
-    int choice;
+int main(){
+    int choice, pin, p;
+    string user, u;
 
     system("cls");
     cout<<"\tWELCOME TO SYAMS BANK\n";
@@ -37,6 +38,7 @@ main(){
 void login(){
     int count, pin, balance, p, b;
     string user, u;
+
     system("cls");
     cout<<"Please enter your username and pin\n";
     cout<<"Username : ";
@@ -46,7 +48,7 @@ void login(){
 
     ifstream input("userdata.txt");
     while(input>>u>>p>>b){
-        if(u==user && p==pin){
+        if(p==pin){
             count=1;
             system("cls");
         }
@@ -59,6 +61,8 @@ void login(){
         cout<<"\nLogin error, please check your username and password\n";
         main();
     }
+
+    // return user;
 }
 
 void registr(){
@@ -72,7 +76,7 @@ void registr(){
     cin>>regpin;
     cout<<"\nInsert your balance: ";
     cin>>regbalance;
-    if(regbalance%50000==0){
+    if(regbalance&50000==0){
         ofstream reg("userdata.txt", ios::app);
         reg<<reguser<<' '<<regpin<<' '<<regbalance<<endl;
         system("cls");
@@ -86,36 +90,52 @@ void registr(){
 
 void balanceinform(){
     int count, balance, pin, b, p;
-    string u;
+    string user, u;
 
     system("cls");
 
-    cout<<"\nInsert your PIN : ";
+    cout<<"\nInsert your PIN  : ";
     cin>>pin;
 
-    ifstream input("userdata.txt");
-    while(input>>u>>p>>b){
+    ifstream saldo("userdata.txt");
+    while(saldo>>u>>p>>b){
         if(p==pin){
-            string next;
-
-            system("cls");
-            cout<<"Your balance is : Rp. "<<b;
-
-            cout<<"\n\nNext(press y)? : ";
-            cin>>next;
-
-            if(next=="y" || next=="Y"){
-                usermenu();
-            }
-            else{
-                balanceinform();
-            }
+            count=1;
         }
-        else{
-            balanceinform();
-        }
+
+        // if(p==pin){
+        //     string next;
+
+        //     system("cls");
+        //     cout<<"Your balance is : Rp. "<<b;
+
+        //     cout<<"\n\nNext(press y)? : ";
+        //     cin>>next;
+
+        //     if(next=="y" || next=="Y"){
+        //         usermenu();
+        //     }
+        //     else{
+        //         balanceinform();
+        //     }
+        // }
+        // else{
+        //     balanceinform();
+        // }
     }
-    input.close();
+    saldo.close();
+
+    if(count=1){
+        system("cls");
+        cout<<"Your balance is : Rp. "<<b;
+        cin.get();
+        cin.get();
+        system("cls");
+        usermenu();
+    }
+    else{
+        cout<<"sorry";
+    }
 }
 
 void transfer(){
@@ -124,11 +144,12 @@ void transfer(){
     cout<<"\t   Transger\n";
     cout<<"=====================================\n";
     cout<<"Masukkan nominal transfer: ";
-    cin<<tf;
+    cin>>tf;
     usermenu();
 }
 
 void usermenu(){
+
     int choice;
     system("cls");
     cout<<"\t   Select One\n";

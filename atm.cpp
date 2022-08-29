@@ -7,6 +7,7 @@ using namespace std;
 void login();
 void registr();
 void usermenu();
+void changepin();
 
 int main(){
     int choice, pin, p;
@@ -103,25 +104,25 @@ void balanceinform(){
             count=1;
         }
 
-        // if(p==pin){
-        //     string next;
+        if(p==pin){
+            string next;
 
-        //     system("cls");
-        //     cout<<"Your balance is : Rp. "<<b;
+            system("cls");
+            cout<<"Your balance is : Rp. "<<b;
 
-        //     cout<<"\n\nNext(press y)? : ";
-        //     cin>>next;
+            cout<<"\n\nNext(press y)? : ";
+            cin>>next;
 
-        //     if(next=="y" || next=="Y"){
-        //         usermenu();
-        //     }
-        //     else{
-        //         balanceinform();
-        //     }
-        // }
-        // else{
-        //     balanceinform();
-        // }
+            if(next=="y" || next=="Y"){
+                usermenu();
+            }
+            else{
+                balanceinform();
+            }
+        }
+        else{
+            balanceinform();
+        }
     }
     saldo.close();
 
@@ -134,7 +135,7 @@ void balanceinform(){
         usermenu();
     }
     else{
-        cout<<"sorry";
+        cout<<"Your input is wrong!";
     }
 }
 
@@ -157,6 +158,7 @@ void usermenu(){
     cout<<"1. Balance Information\n";
     cout<<"2. Transfer\n";
     cout<<"3. Change PIN (soon)\n";
+    cout<<"4. Back\n"
 
     cout<<"Insert your choice(1-3): ";
     cin>>choice;
@@ -165,10 +167,13 @@ void usermenu(){
         case 1:
             balanceinform(); break;
         case 2:
-            registr(); break;
+            transfer(); break;
         case 3:
             system("cls");
-            cout<<"Thanks for using this program"; break;
+            changepin(); break;
+        case 4:
+            main(); break;
+            system("cls");
         break;
         default:
             cout<<"\nYour input is invalid"; 

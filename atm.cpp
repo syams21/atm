@@ -14,7 +14,7 @@ int main(){
     string user, u;
 
     system("cls");
-    cout<<"\tWELCOME TO SYAMS BANK\n";
+    cout<<"\t WELCOME TO SYAMS ATM\n";
     cout<<"=====================================\n";
     cout<<"1. Login\n";
     cout<<"2. Register\n";
@@ -141,12 +141,47 @@ void balanceinform(){
 
 void transfer(){
     int tf;
+    string user, next;
 
-    cout<<"\t   Transger\n";
+    system("cls");
+
+    cout<<"\t      Transfer\n";
     cout<<"=====================================\n";
-    cout<<"Masukkan nominal transfer: ";
+    cout<<"Enter the destination user: ";
+    cin>>user;
+    cout<<"Enter the transfer amount : ";
     cin>>tf;
-    usermenu();
+
+    cout<<"\nAre you sure you will transfer\n";
+    cout<<"to account holder "<<user<<" with\n";
+    cout<<"with a amount of Rp."<<tf<<" ?";
+
+    cout<<"\n\nYes(press y)? : ";
+    cin>>next;
+
+    if(next=="y" || next=="Y"){
+        system("cls");
+        cout<<"The transfer was successful with the following details:";
+        cout<<"\nUser    : "<<user;
+        cout<<"\nNominal : "<<tf;
+
+        cout<<"\n\nYes(press y)? : ";
+        cin>>next;
+
+        if(next=="y" || next=="Y"){
+            usermenu();
+        }
+        else{
+            usermenu();
+        }
+    }
+    else{
+        transfer();
+    }
+}
+
+void changepin(){
+
 }
 
 void usermenu(){
@@ -158,7 +193,7 @@ void usermenu(){
     cout<<"1. Balance Information\n";
     cout<<"2. Transfer\n";
     cout<<"3. Change PIN (soon)\n";
-    cout<<"4. Back\n"
+    cout<<"4. Logout\n";
 
     cout<<"Insert your choice(1-3): ";
     cin>>choice;
@@ -169,11 +204,9 @@ void usermenu(){
         case 2:
             transfer(); break;
         case 3:
-            system("cls");
             changepin(); break;
         case 4:
             main(); break;
-            system("cls");
         break;
         default:
             cout<<"\nYour input is invalid"; 

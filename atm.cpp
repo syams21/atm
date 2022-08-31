@@ -77,7 +77,7 @@ void registr(){
     cin>>regpin;
     cout<<"\nInsert your balance: ";
     cin>>regbalance;
-    if(regbalance&50000==0){
+    if(regbalance%50000==0){
         ofstream reg("userdata.txt", ios::app);
         reg<<reguser<<' '<<regpin<<' '<<regbalance<<endl;
         system("cls");
